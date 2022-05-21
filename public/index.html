@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MUsic | Home</title>
+
+    <script src="./js/funcoes.js"></script>
+
+    <link rel="icon" href="./assets/icon/favicon.ico">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    <div class="header" id="Cabecalho">
+        <div class="container">
+            <div class="logo">
+                <img src="../public/assets/imgs/Logo-Dark.png" width="200px" height="54px">
+            </div>
+
+            <ul class="navbar">
+                <li><a class="a1" href="">Votação</a></li>
+                <li><a class="a1" href="">Playlists</a></li>
+                <li><a class="a1" href="">Ranking</a></li>
+            </ul>
+            <a class="btn" href="login.html"><u>Entrar</u></a>
+        </div>
+    </div>
+
+    <div class="banner">
+        <div class="container">
+            <p>
+            </p>
+        </div>
+    </div>
+
+    <div class="social">
+        <div class="container">
+            <div class="boxes">
+                <div class="box">
+                    <img id="imagem_play" src="./assets/imgs/visao.png" alt="icone play" onclick="rodaRoda()">
+                    <h4>Press Play</h4>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                </div>
+
+                <div class="box">
+                    <img src="./assets/imgs/missao.png" alt="icone sound-bar">
+                    <h4>Turn it up</h4>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                </div>
+
+                <div class="box">
+                    <img src="./assets/imgs/valores.png" alt="icone headphone">
+                    <h4>Enjoy</h4>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!--footer inicio-->
+    <div class="footer">
+
+        
+        <div class="container">
+            <h4>Feito com amor por um aluno &hearts;SPTech &copy; 2022</h4>
+        </div>
+    </div>
+    <!--footer fim-->
+    <section></section>
+</body>
+</html>
+<script>
+    var click = false
+    var animation = false
+    var audio = new Audio ("./assets/audios/AJR-BTHD.mp3")
+   
+    function rodaRoda() {
+        if(click == false) {
+            imagem_play.style.transition = "transform 1s";
+            imagem_play.style.transform += "scaleX(-1)";
+            setTimeout(()=>{
+                imagem_play.src = "./assets/imgs/lightbulb.png"
+            },300)
+            audio.play()
+            soundAnimation();
+            click = true;
+            animation = false
+            
+        }
+        else {
+            animation = true
+            imagem_play.style.transform = "scaleX(1)";
+            
+            setTimeout(()=>{
+                imagem_play.src = "./assets/imgs/visao.png"
+            },300)
+            
+            soundAnimation()
+            
+            audio.pause()
+            click = false
+        } 
+    }
+
+    function soundAnimation()
+        {
+            var imgs = ['./assets/imgs/audio.png', './assets/imgs/nota-2.png', './assets/imgs/nota-simples.png',
+             './assets/imgs/nota-simples-2.png', './assets/imgs/nota.png', './assets/imgs/play.png', './assets/imgs/stop.png']
+
+            var animacao = setInterval(()=>{
+            
+              if(animation)
+              clearInterval(animacao)
+                
+              const section = document.querySelector('section')
+              const createElement = document.createElement('img')
+              var size = Math.random() * 50;
+              
+              var numeroImagem = parseInt(Math.random()*7)
+                createElement.src=imgs[numeroImagem]
+
+              createElement.style.width = 20 + size + 'px';
+              createElement.style.height = 20 + size + 'px';
+              createElement.style.left = Math.random() * innerWidth -60 + "px";
+              section.appendChild(createElement);
+      
+              setTimeout(() => {
+                  createElement.remove()
+              },4000);
+              },200);
+    
+        }
+</script>
+<!-- https://youtu.be/noC22oMVb44 -->
