@@ -10,7 +10,7 @@
 
     <script src="./js/funcoes.js"></script>
 
-    <link rel="icon" href="./assets/icon/favicon.ico">
+    <link rel="icon" href="./assets/imgs/">
     <link rel="stylesheet" href="./css/style.css">
 </head>
 
@@ -63,20 +63,18 @@
     
     <!--footer inicio-->
     <div class="footer">
-
-        
+        <section></section>
         <div class="container">
             <h4>Feito com amor por um aluno &hearts;SPTech &copy; 2022</h4>
         </div>
     </div>
     <!--footer fim-->
-    <section></section>
 </body>
 </html>
 <script>
     var click = false
     var animation = false
-    var audio = new Audio ("./assets/audios/AJR-BTHD.mp3")
+    var audio = new Audio ("./assets/audios/murilo.mp3")
    
     function rodaRoda() {
         if(click == false) {
@@ -85,7 +83,7 @@
             setTimeout(()=>{
                 imagem_play.src = "./assets/imgs/lightbulb.png"
             },300)
-            audio.play()
+            audio.play();
             soundAnimation();
             click = true;
             animation = false
@@ -125,14 +123,13 @@
 
               createElement.style.width = 20 + size + 'px';
               createElement.style.height = 20 + size + 'px';
-              createElement.style.left = Math.random() * innerWidth -60 + "px";
+              createElement.style.left = Math.random() * innerWidth -50 + "px";
               section.appendChild(createElement);
       
               setTimeout(() => {
                   createElement.remove()
-              },4000);
+              },3000);
               },200);
     
         }
 </script>
-<!-- https://youtu.be/noC22oMVb44 -->

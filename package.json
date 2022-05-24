@@ -1,7 +1,6 @@
 {
   "name": "projeto-acquatec",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "start": "node app.js",
@@ -17,5 +16,16 @@
     "mysql2": "^2.2.5",
     "nodemon": "^2.0.7",
     "path": "^0.12.7"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Murilomps/Projeto-individual.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/Murilomps/Projeto-individual/issues"
+  },
+  "homepage": "https://github.com/Murilomps/Projeto-individual#readme",
+  "description": ""
 }

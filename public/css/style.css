@@ -178,7 +178,6 @@ a.a1:hover {
   align-items: center;
 }
 
-
 .box {
   margin-top: 50px;
   display: flex;
@@ -186,8 +185,8 @@ a.a1:hover {
   align-items: center;
 }
 
-
 /* FOOTER */
+
 .footer {
   align-items: center;
   background-color: #32b9cd;
@@ -197,12 +196,14 @@ a.a1:hover {
   flex-direction: column;
   font-size: 15px;
 }
+
 section img {
   position: absolute;
-  bottom: -450px;
+  bottom: -250px;
   pointer-events: none;
   animation: animate 2s linear infinite;
 }
+
 section img::before {
   content: '';
   position: absolute;
@@ -212,45 +213,46 @@ section img::before {
   background: radial-gradient(#fff, transparent);
   border-radius: 50%;
 }
+
 @keyframes animate {
   0% {
-      transform: translateY(0%);
-      opacity: 1;
+    transform: translateY(0%);
+    opacity: 1;
   }
-  99% {
-      opacity: 1;
-  }
-  100% {
-      transform: translateY(-1200%);
-      opacity: 1;
-  }
-}
-.animation {
-  animation: move-imgs 2s ease-in-out 4 forwards;
-}
-@keyframes move-imgs {
 
-  0%{
+  99% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(-1200%);
+    opacity: 1;
+  }
+}
+
+/* @keyframes  {
+
+  0% {
     transform: rotate(5.0deg);
   }
+
   25% {
     transform: rotate(-5.0deg);
   }
+
   50% {
     transform: rotate(5.0deg);
   }
+
   75% {
     transform: rotate(-5.0deg);
   }
+
   90% {
     transform: rotate(5.0deg);
   }
 
-}
-.up {
-  transform: translateY(200px);
-}
-
+} */
 
 /* LOGIN */
 
@@ -260,6 +262,7 @@ section img::before {
   background-image: url(../assets/imgs/bg-jelly-fish-para-home.png);
   background-size: cover;
 }
+
 .banner-l .container-l {
   display: flex;
   height: 400px;
@@ -267,6 +270,7 @@ section img::before {
   justify-content: center;
   align-items: center;
 }
+
 .banner-l .container-l .card {
   background-color: #e5e5e5;
   height: fit-content;
@@ -335,6 +339,7 @@ button {
   box-shadow: #454545 0px 0px 0px;
   box-shadow: inset 3px 3px 2px #454545;
 }
+
 .btn-ext {
   background-color: #FB874D;
   margin: 0px;
@@ -349,23 +354,27 @@ button {
   box-shadow: 4px 4px 0px #454545;
   transition: transform 200ms, box-shadow 200ms;
 }
+
 .btn-ext:active {
   transform: translateY(4px) translateX(4px);
   box-shadow: #454545 0px 0px 0px;
   box-shadow: inset 3px 3px 2px #454545;
 }
+
 .banner-c {
   height: max-content;
   padding: 40px 0;
   background-image: url(../assets/imgs/bg-music-for-the-people.png);
   background-size: cover;
 }
+
 .banner-c .container-c {
   display: flex;
   height: fit-content;
   justify-content: center;
   align-items: center;
 }
+
 .banner-c .container-c .card {
   background-color: #707070b2;
   height: max-content;
@@ -377,12 +386,13 @@ button {
   border-radius: 8px;
 }
 
-.banner-s{
+.banner-s {
   height: max-content;
   padding: 40px 0;
   background-image: url(../assets/imgs/bg-music-for-the-people.png);
   background-size: cover;
 }
+
 /* FORMULARIO */
 
 .alerta_erro {
@@ -419,13 +429,14 @@ button {
 
 input {
   margin-bottom: 10px;
-  border:0px;
+  border: 0px;
   border-bottom: 2px solid #FF7A00;
   padding: 10px;
   background-color: #FFD6B6;
   border-radius: 8px;
 }
-input:focus{
+
+input:focus {
   outline: 0px;
   color: #343434;
 }
@@ -565,6 +576,7 @@ input:focus{
 }
 
 /* pagina extra - simulador */
+
 .simulador {
   color: white;
 
