@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
+* {
+  font-family: "Poppins";
+}
+
 html {
   scroll-behavior: smooth;
   font-family: "Poppins";
@@ -178,6 +182,14 @@ a.a1:hover {
   align-items: center;
 }
 
+.img_borda {
+  display: flex;
+  height: 170px;
+  width: 170px;
+  justify-content: center;
+  align-items: center;
+}
+
 .box {
   margin-top: 50px;
   display: flex;
@@ -187,19 +199,25 @@ a.a1:hover {
 
 /* FOOTER */
 
-.footer {
-  align-items: center;
-  background-color: #32b9cd;
-  height: 150px;
-  color: #fff;
+.rodape {
+  width: 100%;
+  height: 400px;
+  background-color: #343434;
+  color: #ffffff;
   display: flex;
-  flex-direction: column;
-  font-size: 15px;
+  justify-content: center;
+  align-items: center;
+}
+.container_rodape {
+  margin-top: 50px;
+  height: 90%;
+  width: 80%;
+  display: flex;
 }
 
 section img {
   position: absolute;
-  bottom: -250px;
+  bottom: -300px;
   pointer-events: none;
   animation: animate 2s linear infinite;
 }
@@ -272,7 +290,7 @@ section img::before {
 }
 
 .banner-l .container-l .card {
-  background-color: #e5e5e5;
+  background-color: #fff;
   height: fit-content;
   width: 400px;
   display: flex;
@@ -392,6 +410,24 @@ button {
   background-image: url(../assets/imgs/bg-music-for-the-people.png);
   background-size: cover;
 }
+.banner-s .container-s{
+  display: flex;
+  height: 500px;
+  justify-content: center;
+  align-items: center;
+}
+.banner-s .container-s .card {
+  background-color: #fff;
+  padding: 20px 20px 40px 20px;
+  height: fit-content;
+  width: 800px;
+  display: flex;
+  flex-direction: column;
+  color: #FF7A00;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+}
 
 /* FORMULARIO */
 
@@ -416,7 +452,15 @@ button {
   font-weight: 500;
   font-size: 20px;
 }
+.forms {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border: 2px solid red;
 
+}
 .formulario .tipo_campo {
   font-size: 20px;
   font-weight: 600 !important;
@@ -425,6 +469,15 @@ button {
 .formulario {
   display: flex;
   flex-direction: column;
+}
+.formulario2 .tipo_campo {
+  font-size: 20px;
+  font-weight: 600 !important;
+}
+.formulario2 {
+  display: flex;
+  flex-direction: column;
+
 }
 
 input {
@@ -442,7 +495,7 @@ input:focus {
 }
 
 .btn {
-  background-color: #FF7A00;
+  background-color: #FB874D;
   margin: 0px;
   color: #EEEEEE;
   border-radius: 8px;
@@ -464,14 +517,15 @@ input:focus {
 }
 
 .loading-div {
-  width: 50px;
+  width: 100px;
   margin: auto;
   display: none;
 }
 
 .loading-div img {
-  height: 50px;
-  width: 50px;
+  filter: brightness(darken);
+  height: 100px;
+  width: 100px;
 }
 
 /* PAGINA DOS GRÁFICOS */
@@ -504,12 +558,9 @@ input:focus {
 
 .dash-right {
   display: flex;
-  width: 75%;
   height: fit-content;
-  background-color: #161618;
   position: relative;
   top: 0;
-  left: 25%;
 }
 
 .header-left h1 {

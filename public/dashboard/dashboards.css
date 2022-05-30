@@ -4,11 +4,14 @@
 body {
   font-family:"Poppins";
 }
+.corpo {
+  border: 2px solid red;
+  height: 100%;
+}
 
 .dash-right .avisos {
   width: 100%;
-  color: #d8d8d8;
-  font-family:"Poppins";
+  color: #4084e1;
 }
 
 .dash-right .avisos .container {
@@ -30,32 +33,42 @@ body {
 }
 
 .dash-right .avisos .div-form input {
-  width: 100%;
+  width: 95%;
+  border-radius: 4px;
+  background-color: #f0f7ff;
+  border-bottom: 2px solid #4084e1;
+}
+
+.dash-right .avisos .div-form select {
+  margin-top: 16px;
+  height: 45px;
+  width: 25%;
+  border-bottom: 2px solid #4084e1;
+  background-color: #f0f7ff;
   border-radius: 5px;
+  outline: 0px;
 }
 
 .dash-right .avisos .div-form textarea {
   width: 100%;
-  border: 3px solid #e6005a;
-  background-color: white;
+  border: 2px solid #4084e1;
+  background-color: #f0f7ff;
   border-radius: 5px;
+  outline: 0px;
+
 }
 
-.dash-right .avisos .div-form button {
-  cursor: pointer;
-  border: 0;
-  border-radius: 5px;
-  font-weight: 600;
-  font-size: 18px;
-  padding: 10px 15px;
-  color: white;
-  background-color: #e6005a;
-  width: 120px;
+
+.musicas{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
 }
 
 .publicacao-btn-editar {
   cursor: pointer;
-  font-family: "Exo 2", sans-serif;
   border: 0;
   border-radius: 5px;
   font-weight: 600;

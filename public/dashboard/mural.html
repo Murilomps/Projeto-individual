@@ -18,7 +18,7 @@
         rel="stylesheet">
 </head>
 
-<body onload="validarSessao(), atualizarFeed()" style="background-color: #161618;">
+<body>
 
     <!-- <body onload="validarSessao()"> -->
 
@@ -33,7 +33,7 @@
                     <li><a class="a1" href="">Playlists</a></li>
                     <li><a class="a1" href="">Ranking</a></li>
                 </ul>
-                <a class="btn-ext" href="index.html" onclick="limparSessao()"><u>Sair</u></a>
+                <a class="btn-ext" href="../index.html" onclick="limparSessao()"><u>Sair</u></a>
             </div>
         </div>
 
@@ -41,14 +41,29 @@
 
             <div class="avisos">
                 <div class="container">
-                    <h1>Publicar um aviso</h1>
+                    <h1>PlayList</h1>
+                    <div class="div-results">
+                        <div id="feed_container" class="feed-container">
+                        </div>
+                    </div>
+                    <h1>Indique sua favorita!</h1>
                     <div class="div-form">
                         <form id="form_postagem" method="post" onsubmit="return publicar()">
-                            <label>
-                                Título:
-                                <br>
-                                <input name="titulo" id="titulo" maxlength="100" type="text">
-                            </label>
+                            <div class="musicas">
+                                <label>
+                                    Título:
+                                    <br>
+                                    <input name="titulo" id="titulo" maxlength="100" type="text">
+                                </label>
+                                <select name="generos" id="sel_generos">
+                                    <option value="">-- Qual o gênero da musica? --</option>
+                                    <option value=""></option>
+                                    <option value=""></option>
+                                    <option value=""></option>
+                                    <option value=""></option>
+                                    <option value=""></option>
+                                </select>
+                            </div>
                             <br>
                             <label>
                                 Descrição (máximo de 250 caracteres):
@@ -56,13 +71,8 @@
                                 <textarea name="descricao" id="textarea_descricao" maxlength="250" rows="5"></textarea>
                             </label>
                             <br>
-                            <button>Enviar</button>
+                            <button class="btn-ext">Enviar</button>
                         </form>
-                    </div>
-                    <h1>Mural de Avisos</h1>
-                    <div class="div-results">
-                        <div id="feed_container" class="feed-container">
-                        </div>
                     </div>
                 </div>
             </div>

@@ -18,12 +18,12 @@
     <div class="header" id="Cabecalho">
         <div class="container">
             <div class="logo">
-                <img src="../public/assets/imgs/Logo-Dark.png" width="200px" height="54px">
+                <img src="./assets/imgs/Logo-Dark.png" width="200px" height="54px">
             </div>
 
             <ul class="navbar">
-                <li><a class="a1" href="">Votação</a></li>
-                <li><a class="a1" href="">Playlists</a></li>
+                <li><a class="a1" href="simulador.html">Votação</a></li>
+                <li><a class="a1" href="dashboard/mural.html">Playlists</a></li>
                 <li><a class="a1" href="">Ranking</a></li>
             </ul>
             <a class="btn" href="login.html"><u>Entrar</u></a>
@@ -32,8 +32,6 @@
 
     <div class="banner">
         <div class="container">
-            <p>
-            </p>
         </div>
     </div>
 
@@ -41,19 +39,25 @@
         <div class="container">
             <div class="boxes">
                 <div class="box">
-                    <img id="imagem_play" src="./assets/imgs/visao.png" alt="icone play" onclick="rodaRoda()">
+                    <div class="img_borda">
+                        <img id="imagem_play" src="./assets/imgs/visao.png" alt="icone play" onclick="rodaRoda()">
+                    </div>
                     <h4>Press Play</h4>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
                 </div>
 
                 <div class="box">
-                    <img src="./assets/imgs/missao.png" alt="icone sound-bar">
-                    <h4>Turn it up</h4>
+                    <div class="img_borda">
+                        <img src="./assets/imgs/missao.png" alt="icone sound-bar">
+                    </div>
+                        <h4>Turn it up</h4>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
                 </div>
 
                 <div class="box">
-                    <img src="./assets/imgs/valores.png" alt="icone headphone">
+                    <div class="img_borda">
+                        <img src="./assets/imgs/valores.png" alt="icone headphone">
+                    </div>
                     <h4>Enjoy</h4>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
                 </div>
@@ -62,19 +66,23 @@
     </div>
     
     <!--footer inicio-->
-    <div class="footer">
+    <div class="rodape">
         <section></section>
-        <div class="container">
-            <h4>Feito com amor por um aluno &hearts;SPTech &copy; 2022</h4>
+        <div class="container_rodape">
+            <div class="contato">
+                
+            </div>
         </div>
     </div>
     <!--footer fim-->
 </body>
 </html>
 <script>
-    var click = false
-    var animation = false
-    var audio = new Audio ("./assets/audios/murilo.mp3")
+    let click = false
+    let animation = false
+    let musicas = ["./assets/audios/murilo.mp3", "./assets/audios/julia.mp3", "./assets/audios/mauricio.mp3", "./assets/audios/mari.mp3", "./assets/audios/vitor.mp3"]
+
+    var audio
    
     function rodaRoda() {
         if(click == false) {
@@ -83,6 +91,8 @@
             setTimeout(()=>{
                 imagem_play.src = "./assets/imgs/lightbulb.png"
             },300)
+
+            audio = new Audio (musicas[parseInt(Math.random()*musicas.length)])
             audio.play();
             soundAnimation();
             click = true;
