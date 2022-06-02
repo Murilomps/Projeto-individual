@@ -24,7 +24,7 @@
             <ul class="navbar">
                 <li><a class="a1" href="simulador.html">Votação</a></li>
                 <li><a class="a1" href="dashboard/mural.html">Playlists</a></li>
-                <li><a class="a1" href="">Ranking</a></li>
+                <li><a class="a1" href="dashboard/cards.html">Ranking</a></li>
             </ul>
             <a class="btn" href="login.html"><u>Entrar</u></a>
         </div>
@@ -80,9 +80,10 @@
 <script>
     let click = false
     let animation = false
-    let musicas = ["./assets/audios/murilo.mp3", "./assets/audios/julia.mp3", "./assets/audios/mauricio.mp3", "./assets/audios/mari.mp3", "./assets/audios/vitor.mp3"]
-
-    var audio
+    let musicas = ["./assets/audios/murilo.mp3", "./assets/audios/julia.mp3", "./assets/audios/mauricio.mp3",
+     "./assets/audios/mari.mp3", "./assets/audios/vitor.mp3"]
+    let audio
+    const lista = musicas.length
    
     function rodaRoda() {
         if(click == false) {
@@ -92,7 +93,7 @@
                 imagem_play.src = "./assets/imgs/lightbulb.png"
             },300)
 
-            audio = new Audio (musicas[parseInt(Math.random()*musicas.length)])
+            audio = new Audio (musicas[parseInt(Math.random()*lista)])
             audio.play();
             soundAnimation();
             click = true;
@@ -133,7 +134,7 @@
 
               createElement.style.width = 20 + size + 'px';
               createElement.style.height = 20 + size + 'px';
-              createElement.style.left = Math.random() * innerWidth -50 + "px";
+              createElement.style.left = Math.random() * innerWidth -60 + "px";
               section.appendChild(createElement);
       
               setTimeout(() => {
