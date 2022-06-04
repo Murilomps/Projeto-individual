@@ -46,9 +46,9 @@
                     <h3>Mural de Avisos</h3>
                 </a>
             </div>
-            
+
             <a class="btn" href="login.html" onclick="limparSessao()"><u>Entrar</u></a>
-            
+
 
         </div>
 
@@ -58,7 +58,7 @@
             </div>
         </div>
     </div>
-    
+
 </body>
 
 </html>
@@ -134,7 +134,7 @@
         console.log(JSON.stringify(dados));
 
         var ctx = canvas_grafico.getContext('2d');
-        window.grafico_linha = Chart.Line(ctx, {
+        window.grafico_linha = Chart.bar(ctx, {
             data: dados,
             //Configurações do gráfico
             options: {
@@ -177,14 +177,14 @@
         });
 
         function sendData() {
-			var http = new XMLHttpRequest();
-			http.open('POST', 'http://localhost:3000/api/sendData', false);
-			http.send(null);
-		}
+            var http = new XMLHttpRequest();
+            http.open('POST', 'http://localhost:3000/api/sendData', false);
+            http.send(null);
+        }
 
         setInterval(() => {
-			sendData();
-		}, 2000);
+            sendData();
+        }, 2000);
 
         //Atualiza os dados de 5 em 5 segundos
         setTimeout(() => atualizarGrafico(idAquario, dados), 2000);

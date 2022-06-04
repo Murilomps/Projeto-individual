@@ -6,95 +6,91 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AcquaTec | Avisos</title>
-
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="./dashboards.css">
     <script src="../js/funcoes.js"></script>
+    <title>MUsic | PlayList</title>
 
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
 </head>
 
-<body>
+<body onload="validarSessao()">
 
-    <!-- <body onload="validarSessao()"> -->
-
-        <div class="header" id="Cabecalho">
-            <div class="container">
-                <div class="logo">
+    <div class="header" id="Cabecalho">
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html">
                     <img src="../assets/imgs/Logo-Dark.png" width="200px" height="54px">
-                </div>
-    
-                <ul class="navbar">
-                    <li><a class="a1" href="">Votação</a></li>
-                    <li><a class="a1" href="">Playlists</a></li>
-                    <li><a class="a1" href="">Ranking</a></li>
-                </ul>
-                <a class="btn-ext" href="../index.html" onclick="limparSessao()"><u>Sair</u></a>
+                </a>
             </div>
+
+            <ul class="navbar">
+                <li><a class="a1" href="../simulador.html">Votação</a></li>
+                <li><a class="a1" href="#">Playlists</a></li>
+                <li><a class="a1" href="./cards.html">Ranking</a></li>
+            </ul>
+            <a class="btn-ext" href="../index.html" onclick="limparSessao()"><u>Sair</u></a>
         </div>
+    </div>
 
-        <div class="dash-right">
-
-            <div class="avisos">
-                <div class="container">
-                    <h1>PlayList</h1>
-                    <div class="div-results">
-                        <div id="feed_container" class="feed-container">
-                        </div>
+    <div class="dash-right">
+        <div class="avisos">
+            <div class="container">
+                <h1>PlayList</h1>
+                <div class="div-results">
+                    <div id="feed_container" class="feed-container">
+                        
                     </div>
-                    <h1>Indique sua favorita!</h1>
-                    <div class="div-form">
-                        <form id="form_postagem" method="post" onsubmit="return publicar()">
-                            <div class="musicas">
-                                <label>
-                                    Título:
-                                    <br>
-                                    <input name="titulo" id="titulo" maxlength="100" type="text">
-                                </label>
-                                <select name="generos" id="sel_generos">
-                                    <option value="">-- Qual o gênero da musica? --</option>
-                                    <option value=""></option>
-                                    <option value=""></option>
-                                    <option value=""></option>
-                                    <option value=""></option>
-                                    <option value=""></option>
-                                </select>
-                            </div>
-                            <br>
+                </div>
+                <h1>Indique sua favorita!</h1>
+                <div class="div-form">
+                    <form id="form_postagem" method="post" onsubmit="return publicar()">
+                        <div class="musicas">
                             <label>
-                                Descrição (máximo de 250 caracteres):
+                                Título:
                                 <br>
-                                <textarea name="descricao" id="textarea_descricao" maxlength="250" rows="5"></textarea>
+                                <input name="titulo" id="titulo" maxlength="100" type="text">
                             </label>
-                            <br>
-                            <button class="btn-ext">Enviar</button>
-                        </form>
-                    </div>
+                            <select name="generos" id="sel_generos">
+                                <option value="">- Qual o gênero da musica? -</option>
+                                <option value="Eletronica">Eletronica</option>
+                                <option value="Funk">Funk</option>
+                                <option value="Hip-Hop">Hip-Hop</option>
+                                <option value="Indie">Indie</option>
+                                <option value="Pop">Pop</option>
+                                <option value="Pagode">Pagode</option>
+                                <option value="Rap">Rap</option>
+                                <option value="Rock">Rock</option>
+                                <option value="Sertanejo">Sertanejo</option>
+                                <option value="Samba">Samba</option>
+                                <option value="Kpop">Kpop</option>
+                                <option value="Outros">Outro</option>
+                            </select>
+                        </div>
+                        <div class="musicas">
+                            <label>
+                                Artista:
+                                <br>
+                                <input name="titulo" id="artista" maxlength="100" type="text">
+                            </label>
+                            <select name="Plataforma" id="sel_plat">
+                                <option value="">- Qual plataforma você usa? -</option>
+                                <option value="Apple Music">Apple Music</option>
+                                <option value="Amazon Music">Amazon Music</option>
+                                <option value="Deezer">Deezer</option>
+                                <option value="Spotify">Spotify</option>
+                                <option value="Tidal">Tidal</option>
+                                <option value="YT Music">YT Music</option>
+                                <option value="Outros">Outra</option>
+                            </select>
+                        </div>
+                        <br>
+
+                        <button class="btn-ext">Enviar</button>
+                    </form>
                 </div>
             </div>
-
-
-
-
-            <!-- MODAL -->
-            <!-- <div id="div_modal" class="div-modal">
-                <div id="modal_backdrop" onclick="fecharModal()" class="modal-backdrop">
-                </div>
-                <div id="modal_container" class="modal-container">
-                    <button class="btn-fechar-modal" onclick="fecharModal()">X</button>
-                </div>
-            </div> -->
-
-            <!-- AGUARDAR -->
-            <!-- <div id="div_aguardar" class="div-aguardar">
-                <img src="./assets/aguarde-pink3.gif" id="img_aguarde">
-            </div>  -->
-
         </div>
+    </div>
 
 
 
@@ -103,7 +99,14 @@
 </html>
 
 <script>
+    function enviarDados() {
+        let titulo = titulo.value
+        let genero = sel_generos.value
+        let artista = artista.value
+        let plataforma = sel_plat.value
 
+        let instrucao_sql = `insert into musica ${titulo}, ${genero}, ${artista}, ${plataforma};`
+    }
     function limparFormulario() {
         document.getElementById("form_postagem").reset();
     }
@@ -128,7 +131,7 @@
 
             if (resposta.ok) {
                 window.alert("Post realizado com sucesso pelo usuario de ID: " + idUsuario + "!");
-                window.location = "/dashboard/mural.html";
+                window.location = "dashboard/mural.html";
                 limparFormulario();
                 finalizarAguardar();
             } else if (resposta.status == 404) {
@@ -145,35 +148,6 @@
 
     }
 
-    function editar(idAviso) {
-        sessionStorage.ID_POSTAGEM_EDITANDO = idAviso;
-        console.log("cliquei em editar - " + idAviso);
-        window.alert("Você será redirecionado à página de edição do aviso de id número: " + idAviso);
-        window.location = "/dashboard/edicao-aviso.html"
-
-    }
-
-    function deletar(idAviso) {
-        console.log("Criar função de apagar post escolhido - ID" + idAviso);
-        fetch(`/avisos/deletar/${idAviso}`, {
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json"
-            }
-        }).then(function (resposta) {
-
-            if (resposta.ok) {
-                window.alert("Post deletado com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
-                window.location = "/dashboard/mural.html"
-            } else if (resposta.status == 404) {
-                window.alert("Deu 404!");
-            } else {
-                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
-            }
-        }).catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-        });
-    }
 
     function atualizarFeed() {
         //aguardar();

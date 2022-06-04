@@ -14,47 +14,21 @@ CREATE TABLE usuario (
 	senha VARCHAR(50)
 );
 
-CREATE TABLE musica (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	titulo VARCHAR(100),
-    descricao VARCHAR(150),
-	fk_usuario INT,
-	FOREIGN KEY (fk_usuario) REFERENCES usuario(id)
-) auto_increment (100)
+create table musica (
+idMusica int primary key auto_increment,
+titulo varchar (35),
+artista varchar (40),
+genero varchar (20),
+plataforma varchar (40),
+fkUsuario int,
+	foreign key (fkUsuario) references usuario(id)
+) auto_increment = 2201;
 
-CREATE TABLE medida (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	temperatura DECIMAL,
-	umidade DECIMAL,
-	momento DATETIME,
-	fk_aquario INT
+create table votos (
+fkUsuario int,
+	foreign key (fkUsuario) references usuario(id),
+fkMusica int,
+	foreign key (fkMusica) references musica(idMusica),
+primary key (fkUsuario, fkMusica),
+votos decimal (4,2)
 );
-
-
-
-
-/* para sql server - remoto - produção */
-
--- CREATE TABLE usuario (
--- 	id INT PRIMARY KEY IDENTITY(1,1),
--- 	nome VARCHAR(50),
--- 	email VARCHAR(50),
--- 	senha VARCHAR(50),
--- );
-
--- CREATE TABLE aviso (
--- 	id INT PRIMARY KEY IDENTITY(1,1),
--- 	titulo VARCHAR(100),
---     descricao VARCHAR(150),
--- 	fk_usuario INT FOREIGN KEY REFERENCES usuario(id)
--- ); 
-
--- CREATE TABLE medida (
--- 	id INT PRIMARY KEY IDENTITY(1,1),
--- 	temperatura DECIMAL,
--- 	umidade DECIMAL,
--- 	momento DATETIME,
--- 	fk_aquario INT
--- );
-
-

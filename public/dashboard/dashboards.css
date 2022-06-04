@@ -21,16 +21,22 @@ body {
   align-items: center;
 }
 
+.div-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 .dash-right .avisos .container .div-form {
-  width: 100%;
+  width:90%;
 }
 
 .dash-right .avisos .container .div-form #form_postagem {
-  width: 100%;
+  width:90%;
 }
 
 .dash-right .avisos .div-form label {
-  width: 100%;
+  width:90%;
 }
 
 .dash-right .avisos .div-form input {
@@ -51,7 +57,7 @@ body {
 }
 
 .dash-right .avisos .div-form textarea {
-  width: 100%;
+  width:90%;
   border: 2px solid #4084e1;
   background-color: #f0f7ff;
   border-radius: 5px;
