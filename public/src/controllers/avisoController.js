@@ -1,4 +1,4 @@
-var avisoModel = require("../models/avisoModel");
+let avisoModel = require("../models/avisoModel");
 
 function testar(req, res) {
     console.log("ENTRAMOS NO avisoController");
@@ -20,7 +20,7 @@ function listar(req, res) {
 }
 
 function listarPorUsuario(req, res) {
-    var idUsuario = req.params.idUsuario;
+    let idUsuario = req.params.idUsuario;
 
     avisoModel.listarPorUsuario(idUsuario)
         .then(
@@ -45,18 +45,28 @@ function listarPorUsuario(req, res) {
 }
 
 function publicar(req, res) {
-    var titulo = req.body.titulo;
-    var descricao = req.body.descricao;
-    var idUsuario = req.params.idUsuario;
+    let idUsuario = req.params.idUsuario;
+    let titulo = req.body.titulo;
+    let genero = req.body.genero;
+    let artista = req.body.artista;
+    let plataforma = req.body.plataforma;
+
 
     if (titulo == undefined) {
         res.status(400).send("O título está indefinido!");
-    } else if (descricao == undefined) {
-        res.status(400).send("A descrição está indefinido!");
+    } else if (genero == undefined) {
+        res.status(400).send("O gênero está indefinido!");
     } else if (idUsuario == undefined) {
         res.status(403).send("O id do usuário está indefinido!");
-    } else {
-        avisoModel.publicar(titulo, descricao, idUsuario)
+    } else if(artista == undefined)
+    {
+        res.status(403).send("O artista está indefinido!");
+    } else if(plataforma == undefined)
+    {
+        res.status(403).send("A plataforma está indefineda!");
+    } else
+    {
+        avisoModel.publicar(titulo, artista, genero, plataforma, idUsuario)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -73,8 +83,8 @@ function publicar(req, res) {
 }
 
 function editar(req, res) {
-    var novaDescricao = req.body.descricao;
-    var idAviso = req.params.idAviso;
+    let novaDescricao = req.body.descricao;
+    let idAviso = req.params.idAviso;
 
     avisoModel.editar(novaDescricao, idAviso)
         .then(
@@ -93,7 +103,7 @@ function editar(req, res) {
 }
 
 function deletar(req, res) {
-    var idAviso = req.params.idAviso;
+    let idAviso = req.params.idAviso;
 
     avisoModel.deletar(idAviso)
         .then(

@@ -13,7 +13,7 @@
 
 </head>
 
-<body onload="validarSessao()">
+<body onload="validarSessao(), atualizarFeed()">
 
     <div class="header" id="Cabecalho">
         <div class="container">
@@ -41,9 +41,10 @@
                         
                     </div>
                 </div>
+                <br>
                 <h1>Indique sua favorita!</h1>
                 <div class="div-form">
-                    <form>
+                   
                         <div class="musicas">
                             <label>
                                 Título:
@@ -85,8 +86,8 @@
                         </div>
                         <br>
 
-                        <button class="btn-ext" onclick="atualizarFeed()">Enviar</button>
-                    </form>
+                        <button class="btn-ext" onclick="publicar()">Enviar</button>
+                    
                 </div>
             </div>
         </div>
@@ -112,26 +113,28 @@
     }
 
     function publicar() {
-        var idUsuario = sessionStorage.ID_USUARIO;
 
-        var corpo = {
-            titulo: form_postagem.titulo.value,
-            descricao: form_postagem.descricao.value
-        }
+        let idUsuario = sessionStorage.ID_USUARIO;
 
+        console.log('Iniciando fetch')
         fetch(`/avisos/publicar/${idUsuario}`, {
-            method: "post",
+            method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(corpo)
+            body: JSON.stringify({
+                titulo: titulo.value,
+                genero: sel_generos.value,
+                artista: artista.value,
+                plataforma: sel_plat.value
+
+            })
         }).then(function (resposta) {
 
             console.log("resposta: ", resposta);
 
             if (resposta.ok) {
                 window.alert("Post realizado com sucesso pelo usuario de ID: " + idUsuario + "!");
-                limparFormulario();
             } else if (resposta.status == 404) {
                 window.alert("Deu 404!");
             } else {
@@ -139,73 +142,49 @@
             }
         }).catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
-            finalizarAguardar();
         });
 
         return false;
 
     }
-
+        
+ 
 
     function atualizarFeed() {
-        //aguardar();
-        alert (1)
+        alert(1)
         fetch("/avisos/listar",{
-        method : 'POST',
+        method : 'GET',
         headers : {
             'Content-Type' : 'application/json' 
         }
     }).then(function (resposta) {
-            if (resposta.ok) {
-                alert (2)
-                if (resposta.status == 200) {
-                    alert (3)
-                    var feed = document.getElementById("feed_container");
-                    var mensagem = document.createElement("span");
-                    mensagem.innerHTML = "Nenhum resultado encontrado."
-                    feed.appendChild(mensagem);
-                    throw "Nenhum resultado encontrado!!";
-                }
-                alert (resposta.status)
-
-                resposta.json().then(function (resposta) {
-                    console.log("Dados recebidos: ", JSON.stringify(resposta));
-
-                    var feed = document.getElementById("feed_container");
-                    feed.innerHTML = "";
-                    for (let i = 0; i < resposta.length; i++) {
-                        var feed = document.getElementById("feed_container");
-                        var mensagem = document.createElement("span");
-
-                        // criando e manipulando elementos do HTML via JavaScript
-                        mensagem.innerHTML += ` ${resposta[i].titulo}| ${resposta[i].artista}| ${resposta[i].genero}<br>`
-                    }
-                    feed.appendChild(mensagem);
-
-                    finalizarAguardar();
-                });
-            } else {
-                throw ('Houve um erro na API!');
-            }
-        }).catch(function (resposta) {
-            console.error(resposta);
-            finalizarAguardar();
+            
+        if (resposta.ok) 
+        {
+            resposta.json().then(function (json)
+            {
+                console.log(JSON.stringify(json));
+                console.log('Tudo certo');
+                criarEstrutura(json);
+            })
+        }
+        }).catch(function (erro) {
+            console.log(erro);
         });
     }
 
-    function testar() {
-        aguardar();
 
-        var formulario = new URLSearchParams(new FormData(document.getElementById("form_postagem")));
+    function criarEstrutura(json)
+    {
+        let container_playlist = document.getElementById('feed_container');
+        let playlist = document.createElement('div');
+        
+        for(let i = 0; i < json.length; i++)
+        {
+            playlist.innerHTML += 
+            `|Titulo: ${json[i].titulo} | Artista: ${json[i].artista} | Gênero: ${json[i].genero} | Plataforma: ${json[i].plataforma} |<br>`
+        }
 
-        var divResultado = document.getElementById("div_feed");
-
-        divResultado.appendChild(document.createTextNode(formulario.get("descricao")));
-        divResultado.innerHTML = formulario.get("descricao");
-
-        finalizarAguardar();
-
-        return false;
+        container_playlist.appendChild(playlist);
     }
-
 </script>
