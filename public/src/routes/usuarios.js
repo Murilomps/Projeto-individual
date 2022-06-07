@@ -21,6 +21,10 @@ router.post("/autenticar", function (req, res) {
 
 router.post("/votar", function (req, res){
     usuarioController.votar(req, res);
-})
+});
+
+router.get("/dados-votos/:idUsuario", (req, res) => {
+    usuarioController.pegarDadosVotos(req, res);
+});
 
 module.exports = router;

@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="./css/style.css">
 </head>
 
-<body onload="atualizarFeed(false)">
+<body onload="atualizarFeed(false),pegarDadosVotos()">
 
     <!--header inicio-->
     <div class="header" id="Cabecalho">
@@ -111,7 +111,7 @@
 
     function executarVoto(fkMusic)
     {
-
+        alert(1)
         let idUsuario = sessionStorage.ID_USUARIO;
 
         fetch("/usuarios/votar", {
@@ -139,6 +139,26 @@
             .catch((erro) => {
                 console.log(erro);
             })        
+    }
+
+    function pegarDadosVotos()
+    {
+        alert(1)
+        let idUsuario = sessionStorage.ID_USUARIO
+
+
+        fetch(`/usuarios/dados-votos/${idUsuario}`,{ cache: 'no-store' })
+            .then((resposta) => {
+                console.log(resposta.ok)
+                if(resposta.ok)
+                {
+                    resposta.json()
+                        .then(json => {
+                            console.log(JSON.stringify(json));
+                            sessionStorage.NUMERO_VOTOS = json.TextRow.numeroVotos 
+                        })
+                }
+            })
     }
 
 </script>

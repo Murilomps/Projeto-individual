@@ -60,6 +60,31 @@ function entrar(req, res) {
 
 }
 
+function pegarDadosVotos(req, res)
+{
+    let idUsuario = req.params.idUsuario
+
+    console.log(idUsuario)
+    console.log(`Estou no controller pegarDadosVotos Esse é o id do usuario: ${idUsuario}`);
+
+    if(idUsuario == undefined)
+    {
+        res.status(400).send("O id usuário está undefined");
+    }
+    else
+    {
+        console.log(idUsuario);
+        usuarioModel.pegarDadosVotos(idUsuario)
+            .then((resposta) => {
+                res.json(resposta);
+            })
+            .catch((erro) => {
+                console.log(erro);
+                res.status(500).json(erro.sqlMessage);
+            })
+    }
+}
+
 function cadastrar(req, res) {
     var nome = req.body.nomeServer;
     var email = req.body.emailServer;
@@ -128,5 +153,6 @@ module.exports = {
     cadastrar,
     listar,
     testar,
-    votar
+    votar,
+    pegarDadosVotos
 }
