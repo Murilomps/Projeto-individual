@@ -91,9 +91,42 @@ function cadastrar(req, res) {
     }
 }
 
+function votar(req, res)
+{
+    let fkUsuario = req.body.fkUsuarioServer;
+    let fkMusica = req.body.fkMusicaServer;
+
+    console.log('estou no controller');
+
+    if(fkUsuario == undefined)
+    {
+        res.status(400).send("O fkUsuario está undefined");
+    }
+    else if(fkMusica == undefined)
+    {
+        res.status(400).send("O fkMusica está undefined");
+    }
+    else
+    {
+        usuarioModel.votar(fkUsuario, fkMusica)
+            .then((resultado) =>{
+                res.json(resultado);
+            })
+            .catch((erro) =>{
+                console.log(erro);
+                console.log("Houve um erro ao relalizar o cadastro\n", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            })
+    
+    }
+
+}
+
+
 module.exports = {
     entrar,
     cadastrar,
     listar,
-    testar
+    testar,
+    votar
 }

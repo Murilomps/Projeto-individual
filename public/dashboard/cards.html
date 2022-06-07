@@ -2,7 +2,6 @@
 <html lang="pt-br">
 
 <head>
-    <link rel="shortcut icon" href="../assets/icon/favicon.ico" type="image/x-icon">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,11 +9,11 @@
 
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="dashboards.css">
-
+    <script src="http://www.chartjs.org/dist/2.7.1/Chart.js"></script>
     <script src="../js/funcoes.js"></script>
 </head>
 
-<body onload="validarSessao(), atualizacaoPeriodica()"> 
+<body onload="validarSessao(), obterDados()"> 
     
     <div class="header" id="Cabecalho">
         <div class="container">
@@ -52,60 +51,57 @@
 </body>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    const labels = [
-      'Musica 1',
-      'Musica 2',
-      'Musica 3',
-      'Musica 4',
-      'Musica 5',
-    ];
-  
-    const data = {
-      labels: labels,
-      datasets: [{
-        label: 'My First dataset',
-        backgroundColor: 'rgb(255, 99, 132)',
-        borderColor: 'rgb(255, 99, 132)',
-        data: [15, 10, 5, 2, 20, 30, 50],
-      }]
-    };
-  
-    const config = {
-      type: 'bar',
-      data: data,
-      options: {}
-    };
-</script>
-<script>
-    const myChart = new Chart(
-      document.getElementById('myChart'),
-      config
-    );
-</script>
-  
-<script>
-    
 
-    function atualizacaoPeriodica() {
-        obterdados(1);
-        obterdados(2);
-        obterdados(3);
-        obterdados(4);
+const ctx = document.getElementById('myChart').getContext("2d");
+let labels = [];
+let dados = [];
+let frase = document.getElementById('frase')
 
-        function sendData() {
-			var http = new XMLHttpRequest();
-			http.open('POST', 'http://localhost:3000/api/sendData', false);
-			http.send(null);
-		}
+const data = {
+    labels,
+    datasets: [{
+        data: dados,
+        label: 'As músicas mais votadas',
+        fill: true,
+        backgroundColor: [
+            '#476ce3',
+        ],
+    }]
+};
 
-        setInterval(() => {
-			sendData();
-		}, 2000);
-        setTimeout(atualizacaoPeriodica, 5000);
+let config = {
+    type: 'bar',
+    data,
+    options: {
+        responsive: true,
+        scales: {
+            yAxes: [{
+            	ticks: {
+                	beginAtZero: true,
+                    stepSize: 5,
+            	}
+        	}],
+            y : {
+                ticks: {
+                    max:100,
+                    callback: function(value)
+                        {
+                            let finalValue = value
+                            return finalValue + '%';
+                        },
+
+
+                }
+            }            
+    	},
+        
     }
+};
 
-    function obterdados(idAquario) {
-        fetch(`/medidas/tempo-real/${idAquario}`)
+const myChart = new Chart(ctx, config);
+
+    function obterDados() {
+        fetch(`/medidas/ultimas`)
             .then(resposta => {
 
                 if (resposta.ok) {
@@ -113,11 +109,7 @@
 
                         console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
-                        var dados = {
-                            temperatura: resposta[0].temperatura,
-                        }
-
-                        alertar(resposta[0].temperatura, idAquario);
+                        plotarGrafico(resposta);
                     });
                 } else {
 
@@ -129,6 +121,23 @@
             });
 
     }
+
+const plotarGrafico = (json) => 
+{
+    labels.length = 0;
+    dados.length = 0;
+    config.options.y = {"max": 100}
+        for(let i = 0; i < json.length; i++)
+        {
+            let registro = json[i]
+        
+            labels.push(registro.titulo);
+            dados.push(registro.porcentagem);
+        }
+    
+    myChart.update()
+}
+
 
 </script>
 

@@ -54,3 +54,27 @@ function fecharModal() {
     divModal.style.display = "none";
 }
 
+function atualizarFeed(buildStructure) {
+    fetch("/avisos/listar",{
+    method : 'GET',
+    headers : {
+        'Content-Type' : 'application/json' 
+    }
+}).then(function (resposta) {
+        
+    if (resposta.ok) 
+    {
+        resposta.json().then(function (json)
+        {
+            console.log(JSON.stringify(json));
+            console.log('Tudo certo');
+            if(buildStructure)
+                criarEstrutura(json);
+            else   
+                montarEstruturaVotos(json);
+        })
+    }
+    }).catch(function (erro) {
+        console.log(erro);
+    });
+}

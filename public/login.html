@@ -143,9 +143,10 @@
                     sessionStorage.EMAIL_USUARIO = json.email;
                     sessionStorage.NOME_USUARIO = json.nome;
                     sessionStorage.ID_USUARIO = json.id;
+                    sessionStorage.NUMERO_VOTOS = json.numeroVotos;
 
                     setTimeout(function () {
-                        window.location = "./dashboard/mural.html";
+                        window.location = "/dashboard/mural.html";
                     }, 1000); // apenas para exibir o loading
 
                 });

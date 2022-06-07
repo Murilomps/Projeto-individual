@@ -46,7 +46,7 @@ function entrar() {
     return false;
 }
 
-function validarSessao() {
+function validarLogin() {
     aguardar();
 
     var login = sessionStorage.LOGIN_USUARIO;
@@ -70,3 +70,4 @@ function sair() {
     finalizarAguardar();
     window.location = "login.html";
 }
+

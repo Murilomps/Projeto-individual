@@ -9,12 +9,11 @@
     <title>MUsic | Simulador</title>
 
     <script src="./js/funcoes.js"></script>
-
     <link rel="icon" href="./assets/icon/favicon.ico">
     <link rel="stylesheet" href="./css/style.css">
 </head>
 
-<body onload="validarSessao()">
+<body onload="atualizarFeed(false)">
 
     <!--header inicio-->
     <div class="header" id="Cabecalho">
@@ -36,36 +35,6 @@
     <div class="corpo">
         <div class="container">
             <div class="voto">
-                <div class="musica1" id="">
-                    <img src="" style="height: 100px; width:100px ;">
-                    <h2>Titulo</h2>
-                    <h6>Artista</h6>
-                    <input type="checkbox" name="voto" id="">
-                </div>
-                <div class="musica2" id="">
-                    <img src="" style="height: 100px; width:100px ;">
-                    <h2>Titulo</h2>
-                    <h6>Artista</h6>
-                    <input type="checkbox" name="voto" id="">
-                </div>
-                <div class="musica3" id="">
-                    <img src="" style="height: 100px; width:100px ;">
-                    <h2>Titulo</h2>
-                    <h6>Artista</h6>
-                    <input type="checkbox" name="voto" id="">
-                </div>
-                <div class="musica4" id="">
-                    <img src="" style="height: 100px; width:100px ;">
-                    <h2>Titulo</h2>
-                    <h6>Artista</h6>
-                    <input type="checkbox" name="voto" id="">
-                </div>
-                <div class="musica5" id="">
-                    <img src="" style="height: 100px; width:100px ;">
-                    <h2>Titulo</h2>
-                    <h6>Artista</h6>
-                    <input type="checkbox" name="voto" id="">
-                </div>
             </div>
         </div>
     </div>
@@ -84,5 +53,92 @@
 
 </html>
 <script>
+    function montarEstruturaVotos(json)
+    {
+        let div_voto = document.getElementsByClassName('voto')[0];
+
+        for (let i = 0; i < 5; i++)
+        {
+            let musica_voto = document.createElement('div');
+            musica_voto.innerHTML +=`
+            <h2>${json[i].titulo}</h2>
+            <h6>${json[i].artista}</h6>
+            <input class="checkbox_voto" type="checkbox" id="${json[i].idMusica}">
+            `;
+        
+            div_voto.appendChild(musica_voto);
+        }
+
+        let botao_voto = document.createElement('div');
+        botao_voto.innerHTML = `
+            <button class="btns-dash" onclick="validarVoto()">Votar</button>
+        `
+
+        div_voto.appendChild(botao_voto);
+    }
+
+    function validarVoto()
+    {
+        
+        let checkbox_teste = document.getElementsByClassName('checkbox_voto');
+        let fkMusica = 0;
+
+        for (let i = 0; i < checkbox_teste.length; i++)
+        {
+            if(checkbox_teste[i].checked)
+            {
+                fkMusica = checkbox_teste[i].id;
+                break
+            }
+        }
+    
+        if(fkMusica == 0)
+        {
+            alert('Insira uma música')
+            return 0;
+        }
+        else if(sessionStorage.NUMERO_VOTOS > 0)
+        {
+            alert('Você já votou');
+        }
+        else
+        {
+            alert('Tudo certo');
+            executarVoto(fkMusica);
+        }
+        
+    }
+
+    function executarVoto(fkMusic)
+    {
+
+        let idUsuario = sessionStorage.ID_USUARIO;
+
+        fetch("/usuarios/votar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                fkUsuarioServer: idUsuario,
+                fkMusicaServer: fkMusic
+            })
+            })
+            .then((resposta) => {
+                alert(resposta.ok);
+                if(resposta.ok)
+                {
+                    resposta.json()
+                        .then( json =>{
+                            console.log(json)
+                            console.log(JSON.stringify(json));
+                            alert('Voto computado');
+                        })
+                }
+            })
+            .catch((erro) => {
+                console.log(erro);
+            })        
+    }
 
 </script>

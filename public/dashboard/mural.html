@@ -13,7 +13,7 @@
 
 </head>
 
-<body onload="validarSessao(), atualizarFeed()">
+<body onload="validarSessao(), atualizarFeed(true)">
 
     <div class="header" id="Cabecalho">
         <div class="container">
@@ -147,32 +147,6 @@
         return false;
 
     }
-        
- 
-
-    function atualizarFeed() {
-        alert(1)
-        fetch("/avisos/listar",{
-        method : 'GET',
-        headers : {
-            'Content-Type' : 'application/json' 
-        }
-    }).then(function (resposta) {
-            
-        if (resposta.ok) 
-        {
-            resposta.json().then(function (json)
-            {
-                console.log(JSON.stringify(json));
-                console.log('Tudo certo');
-                criarEstrutura(json);
-            })
-        }
-        }).catch(function (erro) {
-            console.log(erro);
-        });
-    }
-
 
     function criarEstrutura(json)
     {
